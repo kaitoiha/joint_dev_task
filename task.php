@@ -2,6 +2,8 @@
 // 課題の回答は このファイル をご利用下さい。
 // 回答の出力を確認される際は，「php task.php」をターミナルから実行して下さい。
 
+use Human as GlobalHuman;
+
 print("#####q1#####".PHP_EOL);
 $names = ["田中", "佐藤", "佐々木", "高橋"];
 
@@ -275,34 +277,86 @@ class Item
 $book = new Item("ゼロ秒思考");
 print($book->name.PHP_EOL);
 
-// echo PHP_EOL;
+echo PHP_EOL;
 
-// print("#####q20#####".PHP_EOL);
-// class Human
-// {
+print("#####q20#####".PHP_EOL);
+class Human
+{
 
-//     // コードを追加
+    // コードを追加
+    public $name;
+    public $age;
 
-// }
+    function __construct($name,$age)
+    {
+        $this->name = $name;
+        $this->age = $age;
+    }
 
-// class Zoo
-// {
+}
 
-//     // コードを追加
+class Zoo
+{
 
-// }
+    // コードを追加
+    private $zoo_name;
+    private $entry_fee;
 
-// $zoo = new Zoo("旭山動物園",["infant" => 0, "children" => 400, "adult" => 800, "senior" => 500]);
+    function __construct($zoo_name,$zoo_entry_fee)
+    {
+        $this->name = $zoo_name;
+        $this->entry_fee = $zoo_entry_fee;
+    }
 
-// $human1 = new Human("たま", 3);
-// $human2 = new Human("ゆたぼん", 10);
-// $human3 = new Human("あじー", 32);
-// $human4 = new Human("ぎん", 108);
+    function info_entry_fee(Human $human){
+        if($human->age <= 5){
+            print($human->name . "さんの入場料金は " . $this->entry_fee["infant"] . " 円です。" . PHP_EOL);
+        } elseif($human->age <= 12) {
+            print($human->name . "さんの入場料金は " . $this->entry_fee["children"] . " 円です。" . PHP_EOL);
+        } elseif ($human->age <= 64) {
+            print($human->name . "さんの入場料金は " . $this->entry_fee["adult"] . " 円です。" . PHP_EOL);
+        } elseif ($human->age <= 120) {
+            print($human->name . "さんの入場料金は " . $this->entry_fee["senior"] . " 円です。" . PHP_EOL);
+        }
+    }
+}
 
-// $humans = [$human1, $human2, $human3, $human4];
+$zoo = new Zoo("旭山動物園",["infant" => 0, "children" => 400, "adult" => 800, "senior" => 500]);
 
-// foreach ($humans as $human) {
-//     $zoo->info_entry_fee($human);
-// }
+$human1 = new Human("たま", 3);
+$human2 = new Human("ゆたぼん", 10);
+$human3 = new Human("あじー", 32);
+$human4 = new Human("ぎん", 108);
 
-// echo PHP_EOL;
+$humans = [$human1, $human2, $human3, $human4];
+
+foreach ($humans as $human) {
+    $zoo->info_entry_fee($human);
+}
+
+echo PHP_EOL;
+
+print("#####q21#####" . PHP_EOL);
+//Q21. FizzBuzz問題の応用問題です。次の仕様、条件を満たすコードを書いて、1から30までの正の整数を期待する出力結果にして下さい。
+
+for($i = 1; $i <= 30; $i++){
+    if($i % 105 == 0){
+        echo "FizzBuzzHoge" . PHP_EOL;
+    } elseif($i % 35 == 0){
+        echo "BuzzHoge" . PHP_EOL;
+    } elseif ($i % 21 == 0) {
+        echo "FizzHoge" . PHP_EOL;
+    } elseif ($i % 21 == 0) {
+        echo "FizzHoge" . PHP_EOL;
+    } elseif ($i % 15 == 0) {
+        echo "FizzBuzz" . PHP_EOL;
+    } elseif ($i % 7 == 0) {
+        echo "Hoge" . PHP_EOL;
+    } elseif ($i % 5 == 0) {
+        echo "Buzz" . PHP_EOL;
+    } elseif ($i % 3 == 0) {
+        echo "Fizz" . PHP_EOL;
+    }else{
+        echo $i . PHP_EOL;
+    }
+}
